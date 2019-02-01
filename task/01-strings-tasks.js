@@ -314,6 +314,7 @@ function getCardId(value) {
             i+=39;
             break;
     }
+    
     return i;
 }
 
