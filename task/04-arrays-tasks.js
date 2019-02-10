@@ -23,7 +23,13 @@
  *    [0, 1, 2, 3, 4, 5], 5    => 5
  */
 function findElement(arr, value) {
-   throw new Error('Not implemented');
+   if (arr.indexOf) { // if our browser supports this method
+      return arr.indexOf(value);
+   }
+   for (var i = 0; i < arr.length; i++) { // if it doesn't
+      if (arr[i] === value) return i;
+   }
+   return -1;
 }
 
 /**
@@ -38,7 +44,8 @@ function findElement(arr, value) {
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
 function generateOdds(len) {
-   throw new Error('Not implemented');
+   let odds = new Array(len).fill(1);
+   return odds.map((el, index)=>{return el*(index*2+1);})
 }
 
 
@@ -54,7 +61,7 @@ function generateOdds(len) {
  *    [] => [] 
  */
 function doubleArray(arr) {
-   throw new Error('Not implemented');
+   return arr.concat(arr);
 }
 
 
@@ -70,7 +77,7 @@ function doubleArray(arr) {
  *    [] => [] 
  */
 function getArrayOfPositives(arr) {
-   throw new Error('Not implemented');
+   return arr.filter(a => a > 0);
 }
 
 /**
@@ -85,7 +92,7 @@ function getArrayOfPositives(arr) {
  *    [ 'cat, 'dog', 'raccon' ] => [ 'cat', 'dog', 'racoon' ]
  */
 function getArrayOfStrings(arr) {
-   throw new Error('Not implemented');
+   return arr.filter(a => typeof(a) === 'string');
 }
 
 /**
