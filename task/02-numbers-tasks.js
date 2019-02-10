@@ -136,7 +136,8 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
  *     0     => 0
  */
 function getLastDigit(value) {
-    throw new Error('Not implemented');
+    let lastone = value.toString().split('').pop();
+    return lastone;
 }
 
 
@@ -152,7 +153,7 @@ function getLastDigit(value) {
  * '-525.5'     => -525.5
  */
 function parseNumberFromString(value) {
-    throw new Error('Not implemented');
+    return Number(value);
 }
 
 /**
@@ -169,7 +170,8 @@ function parseNumberFromString(value) {
  *   1,2,3   => 3.741657386773941
  */
 function getParallelipidedDiagonal(a,b,c) {
-    throw new Error('Not implemented');
+    let square = Math.pow(a,2) + Math.pow(b,2) + Math.pow(c,2);
+    return Math.pow(square, 1/2);
 }
 
 /**
@@ -190,7 +192,15 @@ function getParallelipidedDiagonal(a,b,c) {
  *   1678, 3  => 2000
  */
 function roundToPowerOfTen(num, pow) {
-    throw new Error('Not implemented');
+    switch (pow) {
+        case 0: return num;
+        case 1: 
+            return Math.round(num/10)*10;
+        case 2: 
+            return Math.round(num/100)*100;
+        case 3: 
+            return Math.round(num/1000)*1000;    
+    }
 }
 
 /**
@@ -211,7 +221,21 @@ function roundToPowerOfTen(num, pow) {
  *   17 => true
  */
 function isPrime(n) {
-    throw new Error('Not implemented');
+    if (n <= 3)
+        return n > 1;
+    else {
+        if (n % 2 === 0 || n % 3 === 0)
+        return false;
+    }
+
+    let i = 5;
+    while (i*i <= n) {
+        if (n % i === 0 || n % (i+2) === 0) {
+        return false;
+    }
+    i += 6;
+  }
+  return true;
 }
 
 /**
@@ -230,7 +254,14 @@ function isPrime(n) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-    throw new Error('Not implemented');
+    if (value === null) return def;
+    else if (value === undefined) return def;
+    else if (typeof(value) === 'number') return value;
+    else if (typeof(value) === 'object') return value;
+    else if (typeof(value) === 'string') {
+        if (!isNaN(Number(value))) return Number(value);
+        else if (isNaN(Number(value))) return def;
+    } 
 }
 
 module.exports = {
