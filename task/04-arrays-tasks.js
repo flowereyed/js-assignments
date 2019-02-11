@@ -263,7 +263,7 @@ function getMovingSum(arr) {
  * [ "a" ] => []
  */
 function getSecondItems(arr) {
-   return arr.filter((el, i) => i % 2 != 0); // i have no idea why we are using el here
+   return arr.filter((el, i) => i % 2 != 0); 
 }
 
 
@@ -282,7 +282,13 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-   throw new Error('Not implemented');
+   let arrFin = arr.map((el, i) => {
+      let arrMult = new Array (i+1);
+      arrMult.fill(el);
+      return arrMult;
+   });
+   let merged = [].concat.apply([], arrFin);
+   return merged;
 }
 
 
@@ -300,7 +306,13 @@ function propagateItemsByPositionIndex(arr) {
  *   [ 10, 10, 10, 10 ] => [ 10, 10, 10 ]
  */
 function get3TopItems(arr) {
-   throw new Error('Not implemented');
+   let comparison = (i ,j) => {
+      if (i > j) return -1;
+      else return 1;
+   }
+   arr.sort(comparison);
+   if (arr.length > 3) return arr.slice(0, 3);
+   else return arr;
 }
  
  
@@ -318,7 +330,7 @@ function get3TopItems(arr) {
  *   [ 1, '2' ] => 1
  */
 function getPositivesCount(arr) {
-   throw new Error('Not implemented');
+   return arr.filter(el => typeof el === 'number' && el > 0).length;
 }
  
 /** 
