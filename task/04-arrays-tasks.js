@@ -594,10 +594,11 @@ function group(array, keySelector, valueSelector) {
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) { 
-   if (arr.some(el => typeof el === 'array')) 
+  /* if (arr.some(el => typeof el === 'array')) 
       return arr.reduce((a, b) => a.concat(b), []);// if an element of an array is a nested array
    else return arr.map(el => childrenSelector(el))
-      .reduce((a, b) => a.concat(b), []); // after applying childrenSelector we get [['o', 'n', 'e'],[],[]], so we need .flat()
+      .reduce((a, b) => a.concat(b), []); // after applying childrenSelector we get [['o', 'n', 'e'],[],[]], so we need .flat()*/
+      throw new Error('Not implemented');
 }
 
 
@@ -614,10 +615,11 @@ function selectMany(arr, childrenSelector) {
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
 function getElementByIndexes(arr, indexes) {
-   let depthLevel = indexes.length; // number of elements in indexes array = number of nested arrays in arr
+   /*let depthLevel = indexes.length; // number of elements in indexes array = number of nested arrays in arr
    let flatArr = arr.flat(depthLevel - 1); // make an array flatten by required amount of levels
    let index = indexes.reduce((prev, curr) => prev + curr); // now the last element in indexes array should become the only element
-   return flatArr[index];
+   return flatArr[index];*/
+   throw new Error('Not implemented');
 }
 
 
