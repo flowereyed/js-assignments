@@ -574,12 +574,11 @@ function distinct(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-  /* return new Map(array.map(keySelector)
+   return new Map(array.map(keySelector)
          .map(el => [el, array   
          .filter(elem => Object
          .values(elem)[0] === el)
-         .map(valueSelector)])); */
-         throw new Error('Not implemented');
+         .map(valueSelector)])); 
 }
 
 
@@ -615,11 +614,18 @@ function selectMany(arr, childrenSelector) {
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
 function getElementByIndexes(arr, indexes) {
-   /*let depthLevel = indexes.length; // number of elements in indexes array = number of nested arrays in arr
-   let flatArr = arr.flat(depthLevel - 1); // make an array flatten by required amount of levels
-   let index = indexes.reduce((prev, curr) => prev + curr); // now the last element in indexes array should become the only element
-   return flatArr[index];*/
-   throw new Error('Not implemented');
+   let firstIndexFilter = [].concat.apply([], arr.filter((el, ind) => ind === indexes[0]));
+   let secondIndexFilter = indexes.length > 1 ? [].concat.apply([], firstIndexFilter.filter((el,ind) => ind === indexes[1])) : 0;
+
+   switch(indexes.length) {
+   case 1:
+      return firstIndexFilter;
+   case 2:
+      return secondIndexFilter;
+   case 3:
+      let thirdIndexFilter=[].concat.apply([],secondIndexFilter.filter((el, ind) => ind === indexes[2]));
+      return thirdIndexFilter;
+   }
 }
 
 
@@ -642,7 +648,18 @@ function getElementByIndexes(arr, indexes) {
  * 
  */
 function swapHeadAndTail(arr) {
-    throw new Error('Not implemented');
+    if (arr.length % 2 === 0) {
+      let head = arr.slice(0, arr.length/2);
+      let tail = arr.slice(arr.length/2, arr.length);
+      let swappedArray = tail.concat(head);
+      return swappedArray;
+   } else {
+      let head = arr.slice(0, Math.floor(arr.length/2));
+      let middle = arr.slice(Math.floor(arr.length/2), Math.floor(arr.length/2)+1);
+      let tail = arr.slice(Math.floor(arr.length/2)+1, arr.length);
+      let swappedArray = tail.concat(middle).concat(head);
+      return swappedArray;
+   }
 }
 
 
