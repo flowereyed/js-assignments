@@ -594,10 +594,10 @@ function group(array, keySelector, valueSelector) {
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) { 
-   if (arr.some(el => typeof el === 'array')) 
-      return arr.reduce((a, b) => a.concat(b), []);// if an element of an array is a nested array
-   else return arr.map(el => childrenSelector(el))
-      .reduce((a, b) => a.concat(b), []); // after applying childrenSelector we get [['o', 'n', 'e'],[],[]], so we need .flat()
+   let flatArr = [];
+   if(arr.some(el => typeof el==='array')) [].concat.apply([], flatArr); // if an element of an array is a nested array
+   else flatArr = arr;
+   return [].concat.apply([], flatArr.map(el => childrenSelector(el))); // after applying childrenSelector we get [['o', 'n', 'e'],[],[]], so we need childrenSelector()
 }
 
 
