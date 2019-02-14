@@ -574,11 +574,11 @@ function distinct(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-   return new Map(array.map(keySelector)
-         .map(el => [el, array   
-         .filter(elem => Object
-         .values(elem)[0] === el)
-         .map(valueSelector)])); 
+   return new Map(array
+      .map(keySelector)
+      .map(el => [el, array
+      .filter(elem => Object.entries(elem)[0][1] === el)
+      .map(valueSelector)]));
 }
 
 
